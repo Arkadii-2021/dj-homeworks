@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, reverse
 import datetime
-import glob
+import os
 
 
 def home_view(request):
@@ -29,6 +29,7 @@ def time_view(request):
 
 
 def workdir_view(request):
-    list_dir = glob.glob("*.*")
+    path = os.getcwd()
+    list_dir = os.listdir(path)
     dir_work_list = '<br>'.join(list_dir)
     return HttpResponse(dir_work_list)
